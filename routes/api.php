@@ -23,30 +23,7 @@ Route::controller(LoginRegisterController::class)->group(function() {
     Route::post('/register', 'register');
     Route::post('/login', 'login');
 });
-
-// Public routes
-Route::controller(ProductController::class)->group(function() {
-    Route::get('/products', 'index');
-    Route::get('/products/{id}', 'show');
-    Route::get('/products/search/{name}', 'search');
-});
-
 // Protected routes
 Route::middleware('auth:sanctum')->group( function () {
     Route::post('/logout', [LoginRegisterController::class, 'logout']);
-
-    Route::controller(ProductController::class)->group(function() {
-        Route::post('/products', 'store');
-        Route::post('/products/{id}', 'update');
-        Route::delete('/products/{id}', 'destroy');
-    });
-
-    Route::controller(UserController::class)->group(function() {
-        Route::get('/users', 'all');
-    });
-
-    Route::controller(LicenceController::class)->group(function() {
-        Route::post('/licences', 'store');
-    });
-    
 });
